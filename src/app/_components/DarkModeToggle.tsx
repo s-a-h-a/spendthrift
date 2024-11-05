@@ -6,23 +6,27 @@ import { IconMoonFilled, IconSunFilled } from "@tabler/icons-react";
 
 /** Handles the setting and toggling of the application theme */
 const DarkModeToggle: FC = () => {
-  // Defaulting to
-  const [theme, setTheme] = useState(() => {
-    // Check if there's something in localStorage
-    const storedTheme = localStorage.getItem("data-theme");
-    if (storedTheme) return storedTheme;
+  const [theme, setTheme] = useState<null | "dark" | "light">(null);
 
-    // Else see what the browser default is set to
-    return window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  });
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("data-theme");
+    if (storedTheme && (storedTheme === "light" || storedTheme === "dark"))
+      setTheme(storedTheme);
+    else {
+      // Else see what the browser default is set to
+      setTheme(
+        window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light",
+      );
+    }
+  }, []);
 
   // On first render try to set theme from local storage
   useEffect(() => {
     const container = document.getElementById("root");
-    if (!container) return;
+    if (!container || !theme) return;
     container.setAttribute("data-theme", theme);
   }, [theme]);
 
