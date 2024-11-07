@@ -5,7 +5,7 @@ import { type FC, useEffect, useState } from "react";
 import { IconMoonFilled, IconSunFilled } from "@tabler/icons-react";
 
 /** Handles the setting and toggling of the application theme */
-const DarkModeToggle: FC = () => {
+export default function DarkModeToggle() {
   const [theme, setTheme] = useState<null | "dark" | "light">(null);
 
   useEffect(() => {
@@ -43,5 +43,3 @@ const DarkModeToggle: FC = () => {
     </button>
   );
 };
-
-export default DarkModeToggle;
