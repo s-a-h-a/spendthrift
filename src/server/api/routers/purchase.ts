@@ -1,12 +1,14 @@
 import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
+import { Label } from "@prisma/client";
 
 const purchaseSchema = z.object({
   name: z.string(),
   description: z.string().optional(),
   cost: z.number(),
   date: z.date().optional(),
+  label: z.nativeEnum(Label)
 });
 
 export const purchaseRouter = createTRPCRouter({
@@ -25,6 +27,7 @@ export const purchaseRouter = createTRPCRouter({
         description: input.description,
         cost: input.cost,
         date: input.date,
+        label: input.label
       },
     });
   }),
