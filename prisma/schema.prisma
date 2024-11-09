@@ -69,6 +69,7 @@ model Purchase {
   date        DateTime @default(now())
   User        User?    @relation(fields: [userId], references: [id])
   userId      String?
+  label       Label
 }
 
 model Subscription {
@@ -80,6 +81,26 @@ model Subscription {
   isActive    Boolean  @default(true)
   User        User?    @relation(fields: [userId], references: [id])
   userId      String?
+  label       Label
+}
+
+enum Label {
+  AUTOMOTIVE
+  BILLS_AND_UTILITES
+  EDUCATION
+  ENTERTAINMENT
+  FEES_AND_ADJUSTMENTS
+  FOOD_AND_DRINK
+  GAS
+  GIFTS_AND_DONATIONS
+  GROCERIES
+  HEALTH_AND_WELLNESS
+  HOME
+  MISCELLANEOUS
+  PERSONAL
+  PROFESSIONAL_SERVICES
+  SHOPPING
+  TRAVEL
 }
 
 enum Role {

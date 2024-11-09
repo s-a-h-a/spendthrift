@@ -8,7 +8,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 export const metadata: Metadata = {
   title: "Spendthrift",
   description: "Expense tracker",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: [{ rel: "icon", url: "/spendthrift.ico" }],
 };
 
 export default function RootLayout({

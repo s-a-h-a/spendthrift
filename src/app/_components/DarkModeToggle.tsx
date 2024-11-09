@@ -42,4 +42,4 @@ export default function DarkModeToggle() {
       {theme === "light" && <IconSunFilled size={18} />}
     </button>
   );
-};
+}
