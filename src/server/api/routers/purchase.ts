@@ -8,7 +8,7 @@ const purchaseSchema = z.object({
   description: z.string().optional(),
   cost: z.number(),
   date: z.date().optional(),
-  label: z.nativeEnum(Label)
+  label: z.nativeEnum(Label),
 });
 
 export const purchaseRouter = createTRPCRouter({
@@ -19,16 +19,18 @@ export const purchaseRouter = createTRPCRouter({
       },
     });
   }),
-  create: protectedProcedure.input(purchaseSchema).query(({ ctx, input }) => {
-    return ctx.db.purchase.create({
-      data: {
-        userId: ctx.session.user.id,
-        name: input.name,
-        description: input.description,
-        cost: input.cost,
-        date: input.date,
-        label: input.label
-      },
-    });
-  }),
+  create: protectedProcedure
+    .input(purchaseSchema)
+    .mutation(({ ctx, input }) => {
+      return ctx.db.purchase.create({
+        data: {
+          userId: ctx.session.user.id,
+          name: input.name,
+          description: input.description,
+          cost: input.cost,
+          date: input.date,
+          label: input.label,
+        },
+      });
+    }),
 });
