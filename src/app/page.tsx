@@ -3,7 +3,8 @@ import Link from "next/link";
 import { auth } from "~/server/auth";
 import { api, HydrateClient } from "~/trpc/server";
 import Navbar from "~/app/_components/Navbar";
-import CreatePurchase from "./_components/CreatePurchase";
+import CircularIconButton from "./_components/CircluarIconButton";
+import { IconCurrencyDollar } from "@tabler/icons-react";
 
 export default async function Home() {
   // const hello = await api.post.hello({ text: "from tRPC" });
@@ -19,9 +20,11 @@ export default async function Home() {
       <div className="bg-100 flex h-full w-full">
         <Navbar />
       </div>
-      {/* Purchase creation */}
-      <div className="absolute bottom-0 right-0">
-        <CreatePurchase className="mb-10 mr-10" />
+      {/* Purchase & subscription creation */}
+      <div className="absolute bottom-0 right-0 flex flex-col gap-5">
+        <CircularIconButton className="mb-10 mr-10">
+          <IconCurrencyDollar size={25} />
+        </CircularIconButton>
       </div>
       {/* <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
