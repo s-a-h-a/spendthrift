@@ -1,6 +1,6 @@
 "use client";
 
-import { type FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { IconMoonFilled, IconSunFilled } from "@tabler/icons-react";
 

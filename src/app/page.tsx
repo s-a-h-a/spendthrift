@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { auth } from "~/server/auth";
-import { api, HydrateClient } from "~/trpc/server";
+import { HydrateClient } from "~/trpc/server";
 import Navbar from "~/app/_components/Navbar";
 import CircularIconButton from "./_components/CircluarIconButton";
 import { IconCurrencyDollar } from "@tabler/icons-react";
@@ -12,13 +12,19 @@ export default async function Home() {
 
   if (session?.user) {
     // void api.post.getLatest.prefetch();
-    const purchases = await api.purchase.getAll();
+    // const purchases = await api.purchase.getAll();
   }
 
   return (
     <HydrateClient>
       <div className="bg-100 flex h-full w-full">
         <Navbar />
+        <Link
+          href={session ? "/api/auth/signout" : "/api/auth/signin"}
+          className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+        >
+          {session ? "Sign out" : "Sign in"}
+        </Link>
       </div>
       {/* Purchase & subscription creation */}
       <div className="absolute bottom-0 right-0 flex flex-col gap-5">
