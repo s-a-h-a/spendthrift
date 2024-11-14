@@ -56,4 +56,6 @@ COPY --from=builder /app/.next/static ./.next/static
 EXPOSE 3000
 ENV PORT 3000
 
+RUN bash -c 'echo -e "dbURL: ${DATABASE_URL}"'
+
 CMD ["server.js"]
