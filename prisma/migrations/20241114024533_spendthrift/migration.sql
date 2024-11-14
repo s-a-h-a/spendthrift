@@ -1,4 +1,7 @@
 -- CreateEnum
+CREATE TYPE "Label" AS ENUM ('AUTOMOTIVE', 'BILLS_AND_UTILITES', 'EDUCATION', 'ENTERTAINMENT', 'FEES_AND_ADJUSTMENTS', 'FOOD_AND_DRINK', 'GAS', 'GIFTS_AND_DONATIONS', 'GROCERIES', 'HEALTH_AND_WELLNESS', 'HOME', 'MISCELLANEOUS', 'PERSONAL', 'PROFESSIONAL_SERVICES', 'SHOPPING', 'TRAVEL');
+
+-- CreateEnum
 CREATE TYPE "Role" AS ENUM ('HUMAN', 'GOD');
 
 -- CreateTable
@@ -58,6 +61,7 @@ CREATE TABLE "Purchase" (
     "cost" DOUBLE PRECISION NOT NULL,
     "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "userId" TEXT,
+    "label" "Label" NOT NULL,
 
     CONSTRAINT "Purchase_pkey" PRIMARY KEY ("id")
 );
@@ -71,6 +75,7 @@ CREATE TABLE "Subscription" (
     "startDate" TIMESTAMP(3) NOT NULL,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "userId" TEXT,
+    "label" "Label" NOT NULL,
 
     CONSTRAINT "Subscription_pkey" PRIMARY KEY ("id")
 );
