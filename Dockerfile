@@ -23,6 +23,8 @@ RUN \
 
 FROM --platform=linux/amd64 node:20-alpine AS builder
 ARG DATABASE_URL
+RUN echo "TEST"
+RUN echo "dbURL: ${DATABASE_URL}"
 # ARG NEXT_PUBLIC_CLIENTVAR
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
@@ -55,7 +57,5 @@ COPY --from=builder /app/.next/static ./.next/static
 
 EXPOSE 3000
 ENV PORT 3000
-
-RUN echo -e "dbURL: ${DATABASE_URL}"
 
 CMD ["server.js"]
